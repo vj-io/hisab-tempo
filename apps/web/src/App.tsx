@@ -5,6 +5,7 @@ import { SessionCtx, ORG_NAMES, type Session } from './session';
 import { ToastProvider } from './components/Toasts';
 import { Header, type Tab } from './components/Header';
 import { ControlBar } from './components/ControlBar';
+import { DemoGuide } from './components/DemoGuide';
 import { Phone, makeNotification, type PushNotification } from './components/Phone';
 import { ExporterView } from './components/ExporterView';
 import { FinancierView } from './components/FinancierView';
@@ -107,7 +108,12 @@ function AppInner() {
     <SessionCtx.Provider value={session}>
       <div className="min-h-screen bg-bg pb-24">
         <Header tab={tab} onTab={setTab} />
-        {offline === null && <ControlBar />}
+        {offline === null && (
+          <>
+            <ControlBar />
+            <DemoGuide />
+          </>
+        )}
         <main className="xl:pr-[288px]">
           {offline !== null ? (
             <Offline message={offline} onRetry={loginAll} />
